@@ -1,11 +1,279 @@
 ---
-import Welcome from '../components/Welcome.astro';
 import Layout from '../layouts/Layout.astro';
 
-// Welcome to Astro! Wondering what to do next? Check out the Astro documentation at https://docs.astro.build
-// Don't want to use any of this? Delete everything in this file, the `assets`, `components`, and `layouts` directories, and start fresh.
+const services = [
+	{
+		title: 'Consult',
+		items: [
+			'Composites technology',
+			'Natural fibre & Biocomposite specialisation',
+			'Value chain analysis',
+			'Feasibility reporting',
+			'Scenario analysis',
+			'Expert Opinion',
+		],
+	},
+	{
+		title: 'Property / Build',
+		items: ['Composites Factories', 'Regional cluster & Hub development', 'SMME development'],
+	},
+	{
+		title: 'Management Services',
+		items: [
+			'Project management',
+			'Factory management',
+			'Technology upscaling',
+			'Value chain upscaling',
+			'Business creation',
+		],
+	},
+];
 ---
 
-<Layout>
-	<Welcome />
+<Layout
+	title="The Composites Group (Pty) Ltd"
+	description="Enabling advanced manufacturing value creation through composites in South Africa."
+>
+	<main class="page-shell">
+		<section class="hero">
+			<p class="eyebrow">Advanced Manufacturing Advisory</p>
+			<h1>The Composites Group (Pty) Ltd</h1>
+			<p class="lede">
+				Enabling advanced manufacturing value creation through composites in South Africa
+			</p>
+		</section>
+
+		<section class="services" aria-labelledby="services-title">
+			<div class="section-heading">
+				<p class="section-label">Services</p>
+				<h2 id="services-title">Specialised support across composites strategy, facilities, and operations</h2>
+			</div>
+
+			<div class="service-grid">
+				{
+					services.map((service) => (
+						<article class="service-card">
+							<h3>{service.title}</h3>
+							<ul>
+								{service.items.map((item) => <li>{item}</li>)}
+							</ul>
+						</article>
+					))
+				}
+			</div>
+		</section>
+
+		<section class="contact-card" aria-labelledby="contact-title">
+			<div>
+				<p class="section-label">Contact</p>
+				<h2 id="contact-title">Direct enquiries</h2>
+			</div>
+			<div class="contact-links">
+				<a href="mailto:andy@thecompositesgroup.co.za">andy@thecompositesgroup.co.za</a>
+				<a href="tel:+27723753671">+27 (0) 72 375 3671</a>
+			</div>
+		</section>
+	</main>
 </Layout>
+
+<style>
+	:root {
+		--bg: #f5f7f8;
+		--surface: rgba(255, 255, 255, 0.92);
+		--surface-strong: #ffffff;
+		--border: rgba(14, 35, 35, 0.12);
+		--text: #143030;
+		--text-muted: #4d6666;
+		--accent: #0f766e;
+		--accent-strong: #0b5c56;
+		--shadow: 0 18px 48px rgba(12, 32, 32, 0.1);
+	}
+
+	.page-shell {
+		min-height: 100vh;
+		padding: clamp(1.25rem, 2vw, 2rem);
+		background:
+			radial-gradient(circle at top left, rgba(15, 118, 110, 0.12), transparent 35%),
+			linear-gradient(180deg, #eef4f4 0%, var(--bg) 100%);
+		color: var(--text);
+	}
+
+	.hero,
+	.services,
+	.contact-card {
+		width: min(1120px, 100%);
+		margin: 0 auto;
+	}
+
+	.hero {
+		padding: clamp(3.5rem, 8vw, 6rem);
+		border: 1px solid var(--border);
+		border-radius: 28px;
+		background:
+			linear-gradient(135deg, rgba(255, 255, 255, 0.95), rgba(247, 251, 251, 0.9)),
+			var(--surface);
+		box-shadow: var(--shadow);
+	}
+
+	.eyebrow,
+	.section-label {
+		margin: 0 0 0.75rem;
+		font-size: 0.8rem;
+		font-weight: 700;
+		letter-spacing: 0.14em;
+		text-transform: uppercase;
+		color: var(--accent);
+	}
+
+	h1,
+	h2,
+	h3,
+	p {
+		margin-top: 0;
+	}
+
+	h1 {
+		max-width: 12ch;
+		margin-bottom: 1rem;
+		font-size: clamp(2.4rem, 7vw, 5rem);
+		line-height: 0.95;
+		letter-spacing: -0.04em;
+	}
+
+	.lede {
+		max-width: 38rem;
+		margin-bottom: 0;
+		font-size: clamp(1.05rem, 2.2vw, 1.35rem);
+		line-height: 1.7;
+		color: var(--text-muted);
+	}
+
+	.services {
+		padding: clamp(2rem, 5vw, 3rem) 0;
+	}
+
+	.section-heading {
+		max-width: 50rem;
+		margin-bottom: 1.5rem;
+	}
+
+	h2 {
+		font-size: clamp(1.6rem, 4vw, 2.5rem);
+		line-height: 1.15;
+		letter-spacing: -0.03em;
+	}
+
+	.service-grid {
+		display: grid;
+		grid-template-columns: repeat(3, minmax(0, 1fr));
+		gap: 1.25rem;
+	}
+
+	.service-card,
+	.contact-card {
+		border: 1px solid var(--border);
+		border-radius: 24px;
+		background: var(--surface-strong);
+		box-shadow: var(--shadow);
+	}
+
+	.service-card {
+		padding: 1.5rem;
+	}
+
+	h3 {
+		margin-bottom: 1rem;
+		font-size: 1.2rem;
+	}
+
+	ul {
+		margin: 0;
+		padding: 0;
+		list-style: none;
+	}
+
+	li {
+		position: relative;
+		padding-left: 1rem;
+		color: var(--text-muted);
+		line-height: 1.7;
+	}
+
+	li + li {
+		margin-top: 0.45rem;
+	}
+
+	li::before {
+		content: '';
+		position: absolute;
+		left: 0;
+		top: 0.7em;
+		width: 0.38rem;
+		height: 0.38rem;
+		border-radius: 999px;
+		background: var(--accent);
+	}
+
+	.contact-card {
+		display: flex;
+		align-items: center;
+		justify-content: space-between;
+		gap: 1.5rem;
+		padding: clamp(1.5rem, 4vw, 2rem);
+		margin-bottom: 2rem;
+	}
+
+	.contact-links {
+		display: flex;
+		flex-direction: column;
+		align-items: flex-end;
+		gap: 0.75rem;
+	}
+
+	.contact-links a {
+		color: var(--accent-strong);
+		font-size: 1rem;
+		font-weight: 600;
+		text-decoration: none;
+	}
+
+	.contact-links a:hover,
+	.contact-links a:focus-visible {
+		text-decoration: underline;
+	}
+
+	@media (max-width: 900px) {
+		.service-grid {
+			grid-template-columns: 1fr;
+		}
+
+		.contact-card {
+			flex-direction: column;
+			align-items: flex-start;
+		}
+
+		.contact-links {
+			align-items: flex-start;
+		}
+	}
+
+	@media (max-width: 640px) {
+		.page-shell {
+			padding: 1rem;
+		}
+
+		.hero {
+			padding: 1.5rem;
+			border-radius: 22px;
+		}
+
+		.service-card,
+		.contact-card {
+			border-radius: 20px;
+		}
+
+		h1 {
+			max-width: none;
+		}
+	}
+</style>
